@@ -1,0 +1,202 @@
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+on_event = 'BufRead'
+hook_source = 'source ~/.config/nvim/plugins/denite.rc.vim'
+hook_add = 'source ~/.config/nvim/plugins/denite.vim'
+
+[[plugins]]
+repo = 'Jagua/vim-denite-ghq'
+on_source = 'denite.nvim'
+[[plugins]]
+repo = 'neoclide/denite-git'
+on_source = 'denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_event = 'TextYankPost'
+on_source = ['denite.nvim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_source = 'denite.nvim'
+hook_add = '''
+  " nnoremap <silent> [Space]s :<C-u>Deol zsh -edit<CR>
+  nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
+'''
+hook_source = '''
+  " let g:deol#prompt_pattern = '\w*%'
+  let g:deol#prompt_pattern = '%'
+
+  " Set to $PATH.
+  let s:bin = dein#get('vim-themis').rtp . '/bin'
+
+  function! s:split_envpath(path) abort
+    let delimiter = has('win32') ? ';' : ':'
+    if stridx(a:path, '\' . delimiter) < 0
+      return split(a:path, delimiter)
+    endif
+    let split = split(a:path, '\\\@<!\%(\\\\\)*\zs' . delimiter)
+    return map(split,'substitute(v:val, ''\\\([\\'
+          \ . delimiter . ']\)'', "\\1", "g")')
+  endfunction
+
+  function! s:join_envpath(list, orig_path, add_path) abort
+    let delimiter = has('win32') ? ';' : ':'
+    return (stridx(a:orig_path, '\' . delimiter) < 0
+          \ && stridx(a:add_path, delimiter) < 0) ?
+          \   join(a:list, delimiter) :
+          \   join(map(copy(a:list),
+          \        "substitute(v:path, ',\\|\\\\,\\@=', '\\\\\\0', 'g')"),
+          \        delimiter)
+  endfunction
+
+  let $PATH = s:join_envpath(
+        \ dein#util#_uniq(insert(
+        \    s:split_envpath($PATH), s:bin)), $PATH, s:bin)
+  let $THEMIS_HOME = dein#get('vim-themis').rtp
+
+  unlet s:bin
+'''
+[plugins.ftplugin]
+deol = '''
+nnoremap <buffer><silent> [Space]gc
+\ :<C-u>call deol#send('git commit')<CR>
+nnoremap <buffer><silent> [Space]gA
+\ :<C-u>call deol#send('git commit --amend')<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_source = 'denite.nvim'
+hook_add = '''
+  nnoremap <silent> [Window]e :<C-u>Denite junkfile:new junkfile<CR>
+'''
+
+#[[plugins]]
+#repo = "OmniSharp/omnisharp-vim"
+#on_ft = ["cs"]
+#build = "xbuild server/OmniSharp.sln"
+
+[[plugins]]
+repo = "cespare/vim-toml"
+on_ft = ["toml"]
+
+[[plugins]]
+repo = "rhysd/vim-llvm"
+on_ft = ["llvm"]
+hook_source = '''
+let g:llvm_extends_official = 0
+'''
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_source = '''
+let g:rustfmt_autosave = 1
+'''
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = 'tex'
+hook_source = '''
+let g:vimtex_fold_envs = 0
+let g:vimtex_view_general_viewer = 'mupdf'
+'''
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+
+[[plugins]]
+repo = 'aitjcize/cppman'
+on_ft = 'cpp'
+
+
+[[plugins]]
+# neosnippet
+repo = 'Shougo/neosnippet.vim'
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+  let g:neosnippet#snippets_directory='~/.config/nvim/snippets/'
+'''
+on_i  = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+# deoplete
+repo = 'Shougo/deoplete.nvim'
+hook_source = '''
+  "Tab補完の設定
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+        \ neosnippet#expandable_or_jumpable() ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#auto_complete_delay = 1
+  let g:deoplete#auto_complete_start_length = 1
+  let g:deoplete#enable_camel_case = 0
+  let g:deoplete#enable_ignore_case = 0
+  let g:deoplete#enable_refresh_always = 0
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#file#enable_buffer_path = 1
+  let g:deoplete#max_list = 100
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+'''
+on_i = 1
+on_event = 'InsertCharPre'
+
+# replaced LSP
+#[[plugins]]
+#repo = 'zchee/deoplete-clang'
+#on_i  = 1
+#hook_source = '''
+#  let g:deoplete#sources#clang#libclang_path = '/usr/local/lib/libclang.so'
+#  let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+#'''
+#on_ft = ['cpp', 'c', 'cmake']
+#depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft = 'python'
+
+# メンテされてない
+#[[plugins]]
+#repo = 'sebastianmarkow/deoplete-rust'
+#on_ft = 'rust'
+#depends = ['deoplete.nvim']
+#hook_source = '''
+#    let g:deoplete#sources#rust#racer_binary='/home/watanabe/.cargo/bin/racer'
+#    let g:deoplete#sources#rust#rust_source_path='/home/watanabe/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+#    let g:deoplete#sources#rust#show_duplicates=1
+#    let g:deoplete#sources#rust#disable_keymap=1
+#'''
+
+#============================================================================================
+#TweetVim
+#[[plugins]]
+#repo = 'basyura/TweetVim'
+#[[plugins]]
+#repo = 'mattn/webapi-vim'
+#[[plugins]]
+#repo = 'basyura/twibill.vim'
+#[[plugins]]
+#repo = 'tyru/open-browser.vim'
+#[[plugins]]
+#repo = 'h1mesuke/unite-outline'
+#[[plugins]]
+#repo = 'basyura/bitly.vim'
+
+#============================================================================================
+

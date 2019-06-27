@@ -1,0 +1,10 @@
+snippet     while
+abbr        while {}
+    while ${1:#:condition} {
+        ${0:TARGET}
+    }
+
+snippet     print
+abbr        println!("")
+    println!("${1:#:sentence}"${2:#:variable});
+
