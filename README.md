@@ -7,6 +7,8 @@ neovimのインストールとpip3 install pynvimはしてあるものとする
 
 opensslがない(またはバージョンが古い)とpip3が動かない場合があるので，opensslも別途インストールする
 
+入れてエラーがなさそうだったら:UpdateRemotePluginsを実行
+
 ## python3をソースからビルド
 1. https://www.python.org/downloads/source/ らへんからソースをとってくる
 2. ./configure --prefix=$HOME/local/ --enable-optimizations  この辺は適宜
