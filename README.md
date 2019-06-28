@@ -6,3 +6,9 @@ neovimのインストールとpip3 install pynvimはしてあるものとする
 - pip3 -> get-pip.pyを使う
 
 opensslがない(またはバージョンが古い)とpip3が動かない場合があるので，opensslも別途インストールする
+
+## python3をソースからビルド
+1. https://www.python.org/downloads/source/ らへんからソースをとってくる
+2. ./configure --prefix=$HOME/local/ --enable-optimizations  この辺は適宜
+3. make -j4 並列数も適宜
+4. make altinstall  (--with-opensslを指定するときだけalt？)
