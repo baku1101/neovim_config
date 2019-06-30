@@ -9,12 +9,12 @@ xnoremap <silent> <Space>dy
 nnoremap <silent> [Window]<Space>
 	\ :<C-u>Denite file/rec:~/.config/nvim/<CR>
 " /,n,*でのサーチにdeniteを使用
-nnoremap <expr> / line('$') > 10000 ? '/' :
-\ ":\<C-u>Denite -buffer-name=search -start-filter line\<CR>"
-nnoremap <expr> n line('$') > 10000 ? 'n' :
-\ ":\<C-u>Denite -buffer-name=search -resume -refresh -no-start-filter\<CR>"
-nnoremap <expr> * line('$') > 10000 ? '*' :
-\ ":\<C-u>DeniteCursorWord -buffer-name=search line\<CR>"
+"nnoremap <expr> / line('$') > 10000 ? '/' :
+"\ ":\<C-u>Denite -buffer-name=search -start-filter line\<CR>"
+"nnoremap <expr> n line('$') > 10000 ? 'n' :
+"\ ":\<C-u>Denite -buffer-name=search -resume -refresh -no-start-filter\<CR>"
+"nnoremap <expr> * line('$') > 10000 ? '*' :
+"\ ":\<C-u>DeniteCursorWord -buffer-name=search line\<CR>"
 " ss: カレントディレクトリのファイルを見る?
 nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
 	\ -sorters=sorter/rank
@@ -22,6 +22,7 @@ nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
 	\ file file:new<CR>
 " sn: neovimのプラグインのリポジトリ管理?
 nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+nnoremap <silent> [Window]b :<C-u>Denite buffer<CR>
 " nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
 " <Space>dg: カレントディレクトリ以下をripgrep
 nnoremap <silent> <Space>dg :<C-u>Denite -buffer-name=search
