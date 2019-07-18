@@ -171,7 +171,6 @@ noremap m  %
 nnoremap <CR> o<ESC>
 nnoremap <S-CR> O<ESC>
 nnoremap == gg=G''
-nnoremap <Space>n  :NERDTree<CR>
 nnoremap <Space>tv  :vs<CR>:Deol<CR>
 nnoremap <Space>ts  :sp<CR>:Deol<CR>
 nnoremap <Space>tf  :Deol -split=floating -winwidth=110<CR>

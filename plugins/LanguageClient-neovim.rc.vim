@@ -13,8 +13,11 @@ function s:Make_compile_commands_c()
   let dir = getcwd()
   echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang", "' . temp . '", "-std=c11", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
 endfunction
-autocmd BufRead,BufNewFile *.cpp call s:Make_compile_commands_cpp()
-autocmd BufRead,BufNewFile *.c call s:Make_compile_commands_c()
+
+if !filereadable("compile_commands.json")
+	autocmd BufRead,BufNewFile *.cpp call s:Make_compile_commands_cpp()
+	autocmd BufRead,BufNewFile *.c call s:Make_compile_commands_c()
+endif
 
 " 言語ごとに設定する
 " cpp:
@@ -45,6 +48,9 @@ let g:LanguageClient_serverCommands = {
     "\'cpp': ['clangd-6.0', '-compile-commands-dir=' . getcwd()],
 
 let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_hoverPreview = 'Always'
+let g:LanguageClient_loggingFile = '/tmp/lcn.log'
+let g:LanguageClient_autoStart = 1
 
 augroup LanguageClient_config
     autocmd!
@@ -52,11 +58,12 @@ augroup LanguageClient_config
     autocmd User LanguageClientStopped setlocal signcolumn=auto
 augroup END
 
-let g:LanguageClient_autoStart = 1
-nnoremap <Leader>lh :call LanguageClient_textDocument_hover()<CR>
-nnoremap <Leader>ld :call LanguageClient_textDocument_definition()<CR>
-nnoremap <Leader>lr :call LanguageClient_textDocument_rename()<CR>
-nnoremap <Leader>lf :call LanguageClient_textDocument_formatting()<CR>
+nnoremap <space>lh :call LanguageClient_textDocument_hover()<CR>
+nnoremap <space>ld :call LanguageClient_textDocument_definition()<CR>
+nnoremap <space>lr :call LanguageClient_textDocument_rename()<CR>
+nnoremap <space>lf :call LanguageClient_textDocument_formatting()<CR>
+nnoremap <space>lc :call LanguageClient_contextMenu()<CR>
+
 nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
 
