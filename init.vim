@@ -83,6 +83,13 @@ highlight Search ctermfg=4 cterm=reverse
 " begin end などを%で移動できるようにする(%の拡張)
 source $VIMRUNTIME/macros/matchit.vim
 
+" floatwindowを半透明にする
+set winblend=10
+" ポップアップを半透明にする
+set pumblend=10
+" コマンドラインの補完もポップアップにする
+set wildoptions=pum
+
 " }}}1
 " プラグイン {{{1
 
@@ -164,7 +171,6 @@ noremap m  %
 nnoremap <CR> o<ESC>
 nnoremap <S-CR> O<ESC>
 nnoremap == gg=G''
-nnoremap <Space>n  :NERDTree<CR>
 nnoremap <Space>tv  :vs<CR>:Deol<CR>
 nnoremap <Space>ts  :sp<CR>:Deol<CR>
 nnoremap <Space>tf  :Deol -split=floating -winwidth=110<CR>
@@ -181,6 +187,10 @@ inoremap jk <Esc>
 cnoremap Se SeiyaEnable
 cnoremap Sd SeiyaDisable
 tnoremap <C-[> <C-\><C-n>
+" xで消した文字をレジスタに残さない
+nnoremap x "_x
+nnoremap X "_X
+
 " visual + C-nで改行削除 つかってない
 " vnoremap <C-n> :s/\n/ /g<CR>
 "

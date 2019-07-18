@@ -41,6 +41,13 @@ hook_add = '''
 source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
 '''
 
+#[[plugins]]
+#repo = 'neoclide/coc.nvim'
+#rev = 'release'
+#hook_add = '''
+#source ~/.config/nvim/plugins/coc.vim
+#'''
+
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
 hook_add = '''
@@ -80,3 +87,11 @@ repo = 'kannokanno/previm'
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 
+[[plugins]]
+repo = 'iberianpig/ranger-explorer.vim'
+hook_add = '''
+nnoremap <Space>n :RangerOpenCurrentDir<CR>
+'''
+
+[[plugins]]
+repo = 'rbgrouleff/bclose.vim'
