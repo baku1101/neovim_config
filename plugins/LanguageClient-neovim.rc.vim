@@ -6,15 +6,20 @@ let g:LanguageClient_serverCommands = {}
 function s:Make_compile_commands_cpp()
   let temp = expand('%')
   let dir = getcwd()
-  echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++14", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
+  echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["clang", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++14", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
 endfunction
 function s:Make_compile_commands_c()
   let temp = expand('%')
   let dir = getcwd()
-  echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang", "' . temp . '", "-std=c11", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
+  echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["clang", "' . temp . '", "-std=c11", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
 endfunction
-autocmd BufRead,BufNewFile *.cpp call s:Make_compile_commands_cpp()
-autocmd BufRead,BufNewFile *.c call s:Make_compile_commands_c()
+
+let chk=getftype("compile_commands.json")
+if chk == ""
+	autocmd BufRead,BufNewFile *.cpp call s:Make_compile_commands_cpp()
+endif
+
+" autocmd BufRead,BufNewFile *.c call s:Make_compile_commands_c()
 
 " 言語ごとに設定する
 " cpp:
@@ -26,23 +31,15 @@ let g:LanguageClient_serverCommands = {
     \'cs': ['/home/watanabe/.omnisharp/omnisharp-roslyn/run', '-d'],
     \'cpp': ['cquery',
         \ '--language-server',
-        \ '--log-file=/tmp/cq.log',
-        \ '--init={"cacheDirectory":"/var/cquery/"}'],
+        \ '--log-file=$HOME/tmp/cq.log',
+        \ '--init={"cacheDirectory":"$HOME/var/cquery/"}'],
     \'c'  : ['cquery',
         \ '--language-server',
-        \ '--log-file=/tmp/cq.log',
-        \ '--init={"cacheDirectory":"/var/cquery/"}'],
+        \ '--log-file=$HOME/tmp/cq.log',
+        \ '--init={"cacheDirectory":"$HOME/var/cquery/"}'],
 	\'ruby': ['solargraph', 'stdio'],
 	\'scala': ['metals-vim', '--Log_level=Log']
     \ }
-
-"    cquery向けのcppの設定
-"    重くてだめになったし、clangdでも別ファイル参照できたからボツ
-"    \ 'cpp': ['cquery',
-"        \ '--language-server',
-"        \ '--log-file=/tmp/cq.log',
-"        \ '--init={"cacheDirectory":"/var/cquery/"}'],
-    "\'cpp': ['clangd-6.0', '-compile-commands-dir=' . getcwd()],
 
 let g:LanguageClient_loggingLevel = 'DEBUG'
 

@@ -23,6 +23,8 @@ xnoremap \r :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
 "<C-c> でquickrunを停止
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
+au FileType qf nnoremap <silent><buffer><CR> <CR><C-w>p
+
 " LaTeX Quickrun
 " https://qiita.com/ssh0/items/e6d7540cd46fac580bc2より
 let g:quickrun_config['tex'] = {
