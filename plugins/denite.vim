@@ -32,6 +32,7 @@ nnoremap <silent> <Space>dg :<C-u>Denite -buffer-name=search
 "	\ -cursor-pos=`tabpagenr()-1` deol:zsh<CR>
 nnoremap <silent> <Space>dc :<C-u>Denite change jump<CR>
 nnoremap <silent> <Space>dh :<C-u>DeniteCursorWord help<CR>
+nnoremap <silent> <Space>db :<C-u>Denite buffer<CR>
 nnoremap <silent> <Space>gs :<C-u>Denite gitstatus<CR>
 nnoremap <silent> <Space>gl :<C-u>Denite gitlog<CR>
 nnoremap <silent> <Space>gf :<C-u>Denite gitfiles<CR>

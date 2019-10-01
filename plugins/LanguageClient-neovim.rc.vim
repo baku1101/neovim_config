@@ -36,16 +36,14 @@ let g:LanguageClient_serverCommands = {
         \ '--log-file=/tmp/cq.log',
         \ '--init={"cacheDirectory":"/var/cquery/"}'],
 	\'ruby': ['solargraph', 'stdio'],
-	\'scala': ['metals-vim', '--Log_level=Log']
+	\'scala': ['metals-vim', '--Log_level=Log'],
+	\'go': ['gopls', '-mode', 'stdio']
     \ }
 
-"    cquery向けのcppの設定
-"    重くてだめになったし、clangdでも別ファイル参照できたからボツ
-"    \ 'cpp': ['cquery',
-"        \ '--language-server',
-"        \ '--log-file=/tmp/cq.log',
-"        \ '--init={"cacheDirectory":"/var/cquery/"}'],
-    "\'cpp': ['clangd-6.0', '-compile-commands-dir=' . getcwd()],
+let g:LanguageClient_rootMarkers = {
+	\ 'rust': ['Cargo.toml'],
+	\ 'scala': ['build.sbt']
+	\  }
 
 let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_hoverPreview = 'Always'
@@ -57,6 +55,7 @@ augroup LanguageClient_config
     autocmd User LanguageClientStarted setlocal signcolumn=yes
     autocmd User LanguageClientStopped setlocal signcolumn=auto
 augroup END
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 nnoremap <space>lh :call LanguageClient_textDocument_hover()<CR>
 nnoremap <space>ld :call LanguageClient_textDocument_definition()<CR>

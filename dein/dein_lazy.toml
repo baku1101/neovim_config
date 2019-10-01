@@ -152,17 +152,6 @@ hook_source = '''
 on_i = 1
 on_event = 'InsertCharPre'
 
-# replaced LSP
-#[[plugins]]
-#repo = 'zchee/deoplete-clang'
-#on_i  = 1
-#hook_source = '''
-#  let g:deoplete#sources#clang#libclang_path = '/usr/local/lib/libclang.so'
-#  let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-#'''
-#on_ft = ['cpp', 'c', 'cmake']
-#depends = ['deoplete.nvim']
-
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
@@ -171,33 +160,16 @@ on_ft = 'python'
 repo = 'Vimjas/vim-python-pep8-indent'
 on_ft = 'python'
 
-# メンテされてない
-#[[plugins]]
-#repo = 'sebastianmarkow/deoplete-rust'
-#on_ft = 'rust'
-#depends = ['deoplete.nvim']
-#hook_source = '''
-#    let g:deoplete#sources#rust#racer_binary='/home/watanabe/.cargo/bin/racer'
-#    let g:deoplete#sources#rust#rust_source_path='/home/watanabe/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-#	let $RUST_SRC_PATH='/home/watanabe/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-#    let g:deoplete#sources#rust#show_duplicates=1
-#    let g:deoplete#sources#rust#disable_keymap=1
-#'''
 
-#============================================================================================
-#TweetVim
-#[[plugins]]
-#repo = 'basyura/TweetVim'
-#[[plugins]]
-#repo = 'mattn/webapi-vim'
-#[[plugins]]
-#repo = 'basyura/twibill.vim'
-#[[plugins]]
-#repo = 'tyru/open-browser.vim'
-#[[plugins]]
-#repo = 'h1mesuke/unite-outline'
-#[[plugins]]
-#repo = 'basyura/bitly.vim'
-
-#============================================================================================
-
+# [[plugins]]
+# repo = 'fatih/vim-go'
+# on_ft = 'go'
+# 
+# [[plugins]]  # go completion
+# repo = 'zchee/deoplete-go'
+# build = 'make'
+# on_ft = 'go'
+# depends = ['deoplete.nvim']
+# hook_source = '''
+#     let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+# '''
