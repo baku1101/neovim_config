@@ -1,3 +1,24 @@
+snippet     binarysearch
+abbr        二分探索
+options     head
+    //条件式
+	auto isOk = [&](LL mid){
+        //ここになにか書く
+        ${0:TARGET}
+	};
+    //上界，下界が自明なら小さくしても良い
+    LL UB = INT64_MAX-1, LB = -1; // upper bound, lower bound
+	LL ng = LB, ok = UB; // 逆でも良い
+	while (abs(ok - ng) > 1) {
+		LL mid = (ng + ok) / 2;
+		(isOk(mid) ? ok : ng) = mid;
+	}
+	if (ok == UB)
+		cout << "for all x, f(x) = false" << endl;
+	else
+		cout << ok << endl;
+
+
 snippet     bellmanford
 abbr        ベルマンフォード法
 options     head

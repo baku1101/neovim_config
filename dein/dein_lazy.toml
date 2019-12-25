@@ -1,3 +1,6 @@
+
+
+
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_event = 'BufNewFile'
@@ -114,47 +117,32 @@ repo = 'aitjcize/cppman'
 on_ft = 'cpp'
 
 
-[[plugins]]
-# neosnippet
-repo = 'Shougo/neosnippet.vim'
-hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
-  let g:neosnippet#snippets_directory='~/.config/nvim/snippets/'
-'''
-on_i  = 1
-on_ft = ['snippet']
-depends = ['neosnippet-snippets']
 
-[[plugins]]
-# deoplete
-repo = 'Shougo/deoplete.nvim'
-hook_source = '''
-  "Tab補完の設定
-  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 1
-  let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#enable_camel_case = 0
-  let g:deoplete#enable_ignore_case = 0
-  let g:deoplete#enable_refresh_always = 0
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#file#enable_buffer_path = 1
-  let g:deoplete#max_list = 100
-  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-'''
-on_i = 1
-on_event = 'InsertCharPre'
+#[[plugins]]
+## deoplete
+#repo = 'Shougo/deoplete.nvim'
+#hook_source = '''
+#  "Tab補完の設定
+#  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+#        \ neosnippet#expandable_or_jumpable() ?
+#        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+#  let g:deoplete#enable_at_startup = 1
+#  let g:deoplete#auto_complete_delay = 1
+#  let g:deoplete#auto_complete_start_length = 1
+#  let g:deoplete#enable_camel_case = 0
+#  let g:deoplete#enable_ignore_case = 0
+#  let g:deoplete#enable_refresh_always = 0
+#  let g:deoplete#enable_smart_case = 1
+#  let g:deoplete#file#enable_buffer_path = 1
+#  let g:deoplete#max_list = 100
+#  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+#'''
+#on_i = 1
+#on_event = 'InsertCharPre'
 
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-on_ft = 'python'
+#[[plugins]]
+#repo = 'zchee/deoplete-jedi'
+#on_ft = 'python'
 
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'

@@ -98,3 +98,8 @@ fill_v(T &t,const V &v){
 }
 
 //main code
+
+int main(int argc, char const* argv[])
+{
+	return 0;
+}

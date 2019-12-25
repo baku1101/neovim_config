@@ -37,7 +37,7 @@ let g:LanguageClient_serverCommands = {
         \ '--init={"cacheDirectory":"/var/cquery/"}'],
 	\'ruby': ['solargraph', 'stdio'],
 	\'scala': ['metals-vim', '--Log_level=Log'],
-	\'go': ['gopls', '-mode', 'stdio']
+	\'go': ['gopls']
     \ }
 
 let g:LanguageClient_rootMarkers = {

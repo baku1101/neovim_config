@@ -184,8 +184,6 @@ nnoremap <Space>b i//===========================================================
 set backspace=start,eol,indent
 set wildmenu
 inoremap jk <Esc>
-cnoremap Se SeiyaEnable
-cnoremap Sd SeiyaDisable
 tnoremap <C-[> <C-\><C-n>
 " xで消した文字をレジスタに残さない
 nnoremap x "_x
