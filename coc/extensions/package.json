@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "cpp": ">=0.0.1",
+    "coc-json": ">=1.2.4",
+    "coc-snippets": ">=2.1.14",
+    "coc-go": ">=0.6.0"
+  }
+}

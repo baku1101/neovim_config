@@ -1,4 +1,5 @@
 neovimのインストールとpip3 install pynvimはしてあるものとする
+これを`$HOME/.config`以下に入れる
 
 管理者権限がなく，python3またはpip3がインストールされてない場合はローカルにインストールする
 
@@ -14,3 +15,6 @@ opensslがない(またはバージョンが古い)とpip3が動かない場合�
 2. ./configure --prefix=$HOME/local/ --enable-optimizations  この辺は適宜
 3. make -j4 並列数も適宜
 4. make altinstall  (--with-opensslを指定するときだけalt？)
+
+##coc.nvim用の設定ファイル群について
+cocディレクトリは`$HOME/.config`以下に無くちゃいけないので，コピー後にシンボリックリンクを張る

@@ -1,5 +1,8 @@
+#[[plugins]]
+#repo = 'Shougo/neosnippet-snippets'
+
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'honza/vim-snippets'
 
 [[plugins]]
 repo = 'tpope/vim-pathogen'
@@ -29,24 +32,22 @@ repo = 'Lokaltog/vim-powerline'
 [[plugins]]
 repo = 'simeji/winresizer'
 
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
-depends = ['deoplete.nvim']
-hook_add = '''
-source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
-'''
-
 #[[plugins]]
-#repo = 'neoclide/coc.nvim'
-#rev = 'release'
+#repo = 'autozimu/LanguageClient-neovim'
+#rev = 'next'
+#build = 'bash install.sh'
+#depends = ['deoplete.nvim']
 #hook_add = '''
-#source ~/.config/nvim/plugins/coc.vim
+#source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
 #'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merge = 0
+rev = 'release'
+hook_add = '''
+source ~/.config/nvim/plugins/coc.nvim
+'''
 
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
@@ -66,11 +67,11 @@ hook_add = '''
 source ~/.config/nvim/plugins/fzfvim.vim
 '''
 
-[[plugins]]
-repo = 'luochen1990/rainbow'
-hook_add = '''
-source ~/.config/nvim/plugins/rainbow.vim
-'''
+#[[plugins]]
+#repo = 'luochen1990/rainbow'
+#hook_add = '''
+#source ~/.config/nvim/plugins/rainbow.vim
+#'''
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'

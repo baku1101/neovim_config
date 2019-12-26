@@ -113,9 +113,30 @@ call dein#begin(s:dein_dir)
 
 " Plugins
 call dein#add('Shougo/vimproc.vim', {'build' : 'make -f make_unix.mak'})
+
+" colorschemes
 call dein#add('flazz/vim-colorschemes')
 call dein#add('jacoborus/tender.vim')
-call dein#add('gosukiwi/vim-atom-dark')
+call dein#add('altercation/vim-colors-solarized') " solarized
+call dein#add('croaker/mustang-vim')              " mustang
+call dein#add('jeffreyiacono/vim-colors-wombat')  " wombat
+call dein#add('nanotech/jellybeans.vim')          " jellybeans
+call dein#add('vim-scripts/Lucius')               " lucius
+call dein#add('vim-scripts/Zenburn')              " zenburn
+call dein#add('mrkn/mrkn256.vim')                 " mrkn256
+call dein#add('jpo/vim-railscasts-theme')         " railscasts
+call dein#add('therubymug/vim-pyte')              " pyte
+call dein#add('tomasr/molokai')                   " molokai
+call dein#add('chriskempson/vim-tomorrow-theme')  " tomorrow night
+call dein#add('vim-scripts/twilight')             " twilight
+call dein#add('w0ng/vim-hybrid')                  " hybrid
+call dein#add('freeo/vim-kalisi')                 " kalisi
+call dein#add('morhetz/gruvbox')                  " gruvbox
+call dein#add('toupeira/vim-desertink')           " desertink
+call dein#add('sjl/badwolf')                      " badwolf
+call dein#add('itchyny/landscape.vim')            " landscape
+call dein#add('joshdick/onedark.vim')             " onedark in atom
+call dein#add('gosukiwi/vim-atom-dark')           " atom-dark
 
 call dein#load_toml('~/.config/nvim/dein/dein.toml', {'lazy': 0})
 call dein#load_toml('~/.config/nvim/dein/dein_lazy.toml', {'lazy': 1})
@@ -137,7 +158,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 let g:cpp_class_scope_highlight = 1
-colorscheme atom-dark-256
+colorscheme onedark
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -169,7 +190,6 @@ noremap <S-k>   {
 noremap <S-l>   $
 noremap m  %
 nnoremap <CR> o<ESC>
-nnoremap <S-CR> O<ESC>
 nnoremap == gg=G''
 nnoremap <Space>tv  :vs<CR>:Deol<CR>
 nnoremap <Space>ts  :sp<CR>:Deol<CR>
@@ -178,14 +198,11 @@ nnoremap < <<
 nnoremap > >>
 noremap ; :
 noremap : ;
-nnoremap <Space> i<Space><Esc>l
 inoremap <C-b> //============================================================================================<CR><C-u>
 nnoremap <Space>b i//============================================================================================<CR><C-u><C-[>
 set backspace=start,eol,indent
 set wildmenu
 inoremap jk <Esc>
-cnoremap Se SeiyaEnable
-cnoremap Sd SeiyaDisable
 tnoremap <C-[> <C-\><C-n>
 " xで消した文字をレジスタに残さない
 nnoremap x "_x
@@ -193,8 +210,8 @@ nnoremap X "_X
 
 " visual + C-nで改行削除 つかってない
 " vnoremap <C-n> :s/\n/ /g<CR>
-"
-nnoremap <silent> <C-p> :PrevimOpen<CR>
+
+nnoremap <silent> <C-m> :PrevimOpen<CR>
 "jq用の設定
 command! -nargs=? Jq call s:Jq(<f-args>)
 function! s:Jq(...)
@@ -282,19 +299,19 @@ let g:tex_conceal=''
 "translate設定 {{{3
 command! -nargs=+ Trans :vs | :term trans <args>
 "複数行はできなかった！(改行が入ってしまう)
-"普通に辞書として使いたいときはF2(英語→ 日本語)
-nnoremap <F2> yw :Trans '<C-r>"'<CR>
-vnoremap <F2> y :Trans '<C-r>"'<CR>
+"普通に辞書として使いたいときはTe(英語→ 日本語)
+nnoremap Te yw :Trans '<C-r>"'<CR>
+vnoremap Te y :Trans '<C-r>"'<CR>
 
 "日本語→ 英語はF3
-nnoremap <F3> yw :Trans :en '<C-r>"'<CR>
-vnoremap <F3> y :Trans :en '<C-r>"'<CR>
+nnoremap Tj yw :Trans :en '<C-r>"'<CR>
+vnoremap Tj y :Trans :en '<C-r>"'<CR>
 
 "F4でその行を変換(日本語→ 英語)
-let s:trans_cmd = 'trans'
-let s:trans_opt = ':en -b --no-ansi -e google'
-exec 'command! -nargs=0 -range TransLine <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
-nnoremap <silent> <F4> :TransLine<CR>
+"let s:trans_cmd = 'trans'
+"let s:trans_opt = ':en -b --no-ansi -e google'
+"exec 'command! -nargs=0 -range TransLine <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
+"nnoremap <silent> <F4> :TransLine<CR>
 "}}}3
 "vimのtab機能をいい感じにする {{{3
 " Anywhere SID.
