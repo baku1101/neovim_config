@@ -13,6 +13,28 @@
       "command": "gopls",
       "rootPatterns": ["go.mod"],
       "filetypes": ["go"]
-    }
+    },
+    "metals": {
+      "command": "metals-vim",
+      "rootPatterns": ["build.sbt"],
+      "filetypes": ["scala", "sbt"]
+    },
+    "rust": {
+      "command": "ra_lsp_server",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    },
+   "hdlChecker": {
+		"command": "hdl_checker",
+		"args": [
+			"--lsp"
+		],
+		"filetypes": [
+			"vhdl",
+			"verilog",
+			"systemverilog"
+		]
+	}
   }
 }
+

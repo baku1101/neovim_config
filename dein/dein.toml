@@ -26,20 +26,16 @@ repo = 'miyakogi/Seiya.vim'
 [[plugins]]
 repo = 'Lokaltog/vim-powerline'
 
-#[[plugins]]
-#repo = 'Shougo/unite.vim'
+[[plugins]]
+repo = 'bfrg/vim-cpp-modern'
+hook_add = '''
+let g:cpp_no_function_highlight = 1
+let g:cpp_simple_highlight = 1
+let g:cpp_named_requirements_highlight = 1
+'''
 
 [[plugins]]
 repo = 'simeji/winresizer'
-
-#[[plugins]]
-#repo = 'autozimu/LanguageClient-neovim'
-#rev = 'next'
-#build = 'bash install.sh'
-#depends = ['deoplete.nvim']
-#hook_add = '''
-#source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
-#'''
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -81,9 +77,6 @@ repo = 'roxma/nvim-yarp'
 
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
-
-[[plugins]]
-repo = 'kannokanno/previm'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'

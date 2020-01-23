@@ -82,14 +82,13 @@ nnoremap <silent><F5> :QuickRun<CR>
 
 "c++のコンパイル設定
 " let g:quickrun_config.cpp.type = 'cpp/clang++'
-
-if executable("clang++-6.0")
-  let g:syntastic_cpp_compiler = 'clang++-6.0'
-  let g:syntastic_cpp_compiler_options = '--std=c++14 --stdlib=libc++'
-  let g:quickrun_config = {}
-  let g:quickrun_config['cpp/clang++-6.0'] = {
-      \ 'cmdopt': '--std=c++14 --stdlib=libc++',
-      \ 'type': 'cpp/clang++'
-    \ }
-  let g:quickrun_config['cpp'] = {'type': 'cpp/clang++-6.0'}
-endif
+"if executable("clang++-6.0")
+"  let g:syntastic_cpp_compiler = 'clang++-6.0'
+"  let g:syntastic_cpp_compiler_options = '--std=c++14 --stdlib=libc++'
+"  let g:quickrun_config = {}
+"  let g:quickrun_config['cpp/clang++-6.0'] = {
+"      \ 'cmdopt': '--std=c++14 --stdlib=libc++',
+"      \ 'type': 'cpp/clang++'
+"    \ }
+"  let g:quickrun_config['cpp'] = {'type': 'cpp/clang++-6.0'}
+"endif

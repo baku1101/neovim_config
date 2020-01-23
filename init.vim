@@ -211,7 +211,7 @@ nnoremap X "_X
 " visual + C-nで改行削除 つかってない
 " vnoremap <C-n> :s/\n/ /g<CR>
 
-nnoremap <silent> <C-m> :PrevimOpen<CR>
+" nnoremap <silent> <C-m> :PrevimOpen<CR>
 "jq用の設定
 command! -nargs=? Jq call s:Jq(<f-args>)
 function! s:Jq(...)
@@ -234,56 +234,6 @@ autocmd BufNewFile *.sh 0r ~/.config/nvim/template/sh.txt
 autocmd BufNewFile *.cpp 0r ~/.config/nvim/template/cpp.txt
 "}}}1
 " プラグインの設定類 そのうち移行したい {{{1
-" 未使用 {{{2
-"============================================================================================
-"manの設定
-"autocmd FileType cpp set keywordprg=:term\ cppman
-"Shift-kでカーソル下の単語を検索してくれるけどうまく行っていない
-
-"============================================================================================
-"twitvimの設定
-"let twitvim_enable_python3 = 1
-"let twitvim_force_ssl = 1
-"let twitvim_count = 100
-"tweetvimを使うことにした
-
-"============================================================================================
-""syntasticの設定 もう使ってない
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_cpp_check_header = 1
-""let g:syntastic_cpp_checkers = ['gcc']
-"let g:syntastic_cpp_checkers = ['clang_check']
-"let g:syntastic_cpp_clang_check_args = '-extra-arg=-std=c++14'
-"let g:syntastic_cpp_compiler = 'clang++'
-"let g:syntastic_cpp_compiler_options = '-std=c++14 -stdlib=libc++'
-""let g:syntastic_clang_check_config_file=1
-
-"============================================================================================
-"tweetvimの設定
-"" タイムライン選択用の Unite を起動する
-"nnoremap <silent> <Space>tt :Unite tweetvim<CR>
-"" 発言用バッファを表示する
-"nnoremap <silent> <Space>s :<C-u>TweetVimSay<CR>
-"" mentions を表示する
-"nnoremap <silent> <Space>re :<C-u>TweetVimMentions<CR>
-"" 特定のリストのタイムラインを表示する
-"" nnoremap <silent> <Space>tt :<C-u>TweetVimListStatuses basyura vim<CR>
-"
-"" スクリーン名のキャッシュを利用して、neocomplcache で補完する
-"if !exists('g:neocomplcache_dictionary_filetype_lists')
-"    let g:neocomplcache_dictionary_filetype_lists = {}
-"endif
-"let neco_dic = g:neocomplcache_dictionary_filetype_lists
-"let neco_dic.tweetvim_say = $HOME . '/.tweetvim/screen_name'
-
-"}}}2
 "使用中 {{{2
 "texのための設定 {{{3
 " autocmd

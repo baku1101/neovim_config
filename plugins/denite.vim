@@ -22,6 +22,7 @@ nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
 	\ file file:new<CR>
 " sn: neovimのプラグインのリポジトリ管理?
 nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+" バッファ一覧
 nnoremap <silent> [Window]b :<C-u>Denite buffer<CR>
 " nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
 " <Space>dg: カレントディレクトリ以下をripgrep
