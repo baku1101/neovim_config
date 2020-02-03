@@ -44,6 +44,21 @@ rev = 'release'
 hook_add = '''
 source ~/.config/nvim/plugins/coc.nvim
 '''
+#
+#[[plugins]]
+#repo = "LumaKernel/coquille"
+#
+
+# debugger
+[[plugins]]
+repo = 'dbgx/lldb.nvim'
+hook_add = '''
+source ~/.config/nvim/plugins/lldb.nvim
+'''
+
+[[plugins]]
+repo = 'puremourning/vimspector'
+build = './install_gadget.py --all --force-enable-go'
 
 [[plugins]]
 repo = 'vim-syntastic/syntastic'

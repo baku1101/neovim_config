@@ -1,0 +1,9 @@
+nmap <M-b> <Plug>LLBreakSwitch
+nnoremap <F5> :LLmode debug<CR>
+nnoremap <M-n> :LL n<CR>
+nnoremap <M-s> :LL s<CR>
+nnoremap <M-p> :LL print <C-R>=expand('<cword>')<CR><CR>
+nnoremap <M-c> :LL continue<CR>
+nnoremap <M-r> :LL process launch<CR>
+nnoremap <M-f> :LL process launch -i 
+nnoremap <M-i> :LL process interrupt<CR>

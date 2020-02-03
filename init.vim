@@ -90,6 +90,13 @@ set pumblend=10
 " コマンドラインの補完もポップアップにする
 set wildoptions=pum
 
+" 標準のvim+gdbデバッグ
+" 使わないかなあ...
+packadd termdebug
+let g:termdebug_wide = 163
+"マウスを使用
+" set mouse=a
+
 " }}}1
 " プラグイン {{{1
 
@@ -223,9 +230,6 @@ function! s:Jq(...)
 	execute "%! jq \"" . l:arg . "\""
 endfunction
 
-autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
-autocmd BufRead,BufNewFile *.md  set filetype=markdown
-autocmd BufRead,BufNewFile *.sbt  set filetype=scala
 
 "}}}1
 " テンプレートファイル {{{1
@@ -236,14 +240,6 @@ autocmd BufNewFile *.cpp 0r ~/.config/nvim/template/cpp.txt
 " プラグインの設定類 そのうち移行したい {{{1
 "使用中 {{{2
 "texのための設定 {{{3
-" autocmd
-"==============================
-augroup filetype
-  autocmd!
-  " tex file (I always use latex)
-  autocmd BufRead,BufNewFile *.tex set filetype=tex
-augroup END
-
 " disable the conceal function
 let g:tex_conceal=''
 "translate設定 {{{3
