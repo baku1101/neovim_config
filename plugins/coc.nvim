@@ -37,16 +37,17 @@ inoremap <silent><expr> <C-c> coc#refresh()
 " To make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, use: >
 
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+" 			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-k>'
+" let g:coc_snippet_next = '<c-k>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-j>'
+" let g:coc_snippet_prev = '<c-j>'
 
-" Use <C-k> for both expand and jump (make expand higher priority.)
+" CRでスニペット展開，C-kでスニペットのカーソルを進める
+inoremap <expr> <CR> pumvisible() ? "<C-y>" : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 imap <C-k> <Plug>(coc-snippets-expand-jump)
 
 " Use `Ctrl + j` and `Ctrl + k` to navigate diagnostics
@@ -135,18 +136,20 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-function s:Make_compile_commands_cpp()
+function s:MakeCclsCpp()
 	let temp = expand('%')
 	let dir = getcwd()
-	echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang++-9", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++14", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
+	echo system('echo ''[\n{\n"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang++-10", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++17", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG"]\n}\n]'' > compile_commands.json')
+	echo system('echo ''%compile_commands.json\n%h %hpp\n-I.'' > .ccls')
 endfunction
-function s:Make_compile_commands_c()
+
+function s:MakeCclsC()
 	let temp = expand('%')
 	let dir = getcwd()
-	echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang-9", "' . temp . '", "-std=c11", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
+	echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang-10", "' . temp . '", "-std=c11", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
 endfunction
 
 if !filereadable("compile_commands.json")
-	autocmd BufRead,BufNewFile *.cpp call s:Make_compile_commands_cpp()
-	autocmd BufRead,BufNewFile *.c call s:Make_compile_commands_c()
+	autocmd BufRead,BufNewFile *.cpp call s:MakeCclsCpp()
+	autocmd BufRead,BufNewFile *.c call s:MakeCclsC()
 endif

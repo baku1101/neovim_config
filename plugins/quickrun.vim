@@ -75,10 +75,10 @@ let g:quickrun_config.tmptex = {
 \                        ],
 \}
 
-vnoremap <silent><buffer> <F5> :QuickRun -mode v -type tmptex<CR>
+vnoremap <silent><buffer> <F6> :QuickRun -mode v -type tmptex<CR>
 
 " QuickRun and view compile result quickly
-nnoremap <silent><F5> :QuickRun<CR>
+nnoremap <silent><F6> :QuickRun<CR>
 
 "c++のコンパイル設定
 " let g:quickrun_config.cpp.type = 'cpp/clang++'

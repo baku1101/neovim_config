@@ -1,9 +1,16 @@
 [[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['md', 'markdown']
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_ft = ['md', 'markdown']
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 on_event = 'BufNewFile'
 hook_source = 'source ~/.config/nvim/plugins/denite.rc.vim'
 hook_add = 'source ~/.config/nvim/plugins/denite.vim'
-
 
 [[plugins]]
 repo = 'Jagua/vim-denite-ghq'
@@ -28,53 +35,15 @@ hook_add = '''
   nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
 '''
 hook_source = '''
-  " let g:deol#prompt_pattern = '\w*%'
   let g:deol#prompt_pattern = '%'
-
-  " Set to $PATH.
-  let s:bin = dein#get('vim-themis').rtp . '/bin'
-
-  function! s:split_envpath(path) abort
-    let delimiter = has('win32') ? ';' : ':'
-    if stridx(a:path, '\' . delimiter) < 0
-      return split(a:path, delimiter)
-    endif
-    let split = split(a:path, '\\\@<!\%(\\\\\)*\zs' . delimiter)
-    return map(split,'substitute(v:val, ''\\\([\\'
-          \ . delimiter . ']\)'', "\\1", "g")')
-  endfunction
-
-  function! s:join_envpath(list, orig_path, add_path) abort
-    let delimiter = has('win32') ? ';' : ':'
-    return (stridx(a:orig_path, '\' . delimiter) < 0
-          \ && stridx(a:add_path, delimiter) < 0) ?
-          \   join(a:list, delimiter) :
-          \   join(map(copy(a:list),
-          \        "substitute(v:path, ',\\|\\\\,\\@=', '\\\\\\0', 'g')"),
-          \        delimiter)
-  endfunction
-
-  let $PATH = s:join_envpath(
-        \ dein#util#_uniq(insert(
-        \    s:split_envpath($PATH), s:bin)), $PATH, s:bin)
-  let $THEMIS_HOME = dein#get('vim-themis').rtp
-
-  unlet s:bin
-'''
-[plugins.ftplugin]
-deol = '''
-nnoremap <buffer><silent> [Space]gc
-\ :<C-u>call deol#send('git commit')<CR>
-nnoremap <buffer><silent> [Space]gA
-\ :<C-u>call deol#send('git commit --amend')<CR>
 '''
 
-[[plugins]]
-repo = 'Shougo/junkfile.vim'
-on_source = 'denite.nvim'
-hook_add = '''
-  nnoremap <silent> [Window]e :<C-u>Denite junkfile:new junkfile<CR>
-'''
+# [[plugins]]
+# repo = 'Shougo/junkfile.vim'
+# on_source = 'denite.nvim'
+# hook_add = '''
+#   nnoremap <silent> [Window]e :<C-u>Denite junkfile:new junkfile<CR>
+# '''
 
 #[[plugins]]
 #repo = "OmniSharp/omnisharp-vim"
@@ -98,13 +67,20 @@ hook_source = '''
 let g:rustfmt_autosave = 1
 '''
 
+#[[plugins]]
+#repo = 'lervag/vimtex'
+#on_ft = 'tex'
+#hook_source = '''
+#let g:vimtex_fold_envs = 0
+#let g:vimtex_view_general_viewer = 'evince'
+#'''
+
 [[plugins]]
-repo = 'lervag/vimtex'
-on_ft = 'tex'
-hook_source = '''
-let g:vimtex_fold_envs = 0
-let g:vimtex_view_general_viewer = 'mupdf'
+repo = 'vim-latex/vim-latex'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-latex.vim
 '''
+on_ft = 'tex'
 
 [[plugins]]
 repo = 'elzr/vim-json'
@@ -139,3 +115,15 @@ on_ft = 'python'
 [[plugins]]
 repo = 'sebwink/previm'
 on_ft = 'markdown'
+
+# debugger
+[[plugins]]
+repo = 'dbgx/lldb.nvim'
+on_ft = ["cpp","c","py"]
+hook_add = '''
+source ~/.config/nvim/plugins/lldb.nvim
+'''
+
+[[plugins]]
+repo = 'puremourning/vimspector'
+build = './install_gadget.py --all --force-enable-go'

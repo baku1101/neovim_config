@@ -6,7 +6,7 @@ let g:LanguageClient_serverCommands = {}
 function s:Make_compile_commands_cpp()
   let temp = expand('%')
   let dir = getcwd()
-  echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++14", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
+  echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++17", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG", "--target=x86_64-pc-linux-gnu"]}]'' > compile_commands.json')
 endfunction
 function s:Make_compile_commands_c()
   let temp = expand('%')

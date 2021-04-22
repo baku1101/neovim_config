@@ -1,0 +1,12 @@
+# CMakeLists.txt
+project(test CXX)
+cmake_minimum_required(VERSION 3.1)
+add_executable(main src/main.cpp)
+add_subdirectory(src)
+target_link_libraries(main sub01 sub23)
+
+include_directories(
+	${PROJECT_SOURCE_DIR}/include
+	)
+
+set(CMAKE_VERBOSE_MAKEFILE 1)

@@ -1,3 +1,4 @@
+let g:session_path='~/.config/nvim/myplugins/session.vim'
 " 基本設定 {{{1
 " モードラインを有効にする
 set modeline
@@ -52,9 +53,9 @@ set wildmode=longest:full,full
 let g:vim_markdown_folding_disabled=1
 
 if has('vim_starting')
-    let &t_SI .= "\e[6 q"
-    let &t_EI .= "\e[2 q"
-    let &t_SR .= "\e[4 q"
+	let &t_SI .= "\e[6 q"
+	let &t_EI .= "\e[2 q"
+	let &t_SR .= "\e[4 q"
 endif
 
 " Tab系
@@ -97,72 +98,75 @@ let g:termdebug_wide = 163
 "マウスを使用
 " set mouse=a
 
+" :CDでカレントディレクトリを変更するコマンド
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang)
+	if a:directory == ''
+		lcd %:p:h
+	else
+		execute 'lcd' . a:directory
+	endif
+
+	if a:bang == ''
+		pwd
+	endif
+endfunction
+
+" Change current directory.
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
+
 " }}}1
 " プラグイン {{{1
-
+if &compatible
+  set nocompatible
+endif
 "dein.vim(プラグイン管理)の設定
 "deinパス設定
-let s:dein_dir = fnamemodify('~/.config/nvim/dein/', ':p') "<-お好きな場所
-let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:toml_dir = expand('~/.config/nvim/dein')
 
-" dein.vim本体の存在チェックとインストール
-if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
-endif
-
-" dein.vim本体をランタイムパスに追加
-if &runtimepath !~# '/dein.vim'
-    execute 'set runtimepath^=' . s:dein_repo_dir
+" dein.vim ディレクトリがruntimepathに入っていない場合、追加
+if match( &runtimepath, '/dein.vim' ) == -1
+  " dein_repo_dir で指定した場所に dein.vim が無い場合、git cloneしてくる
+	if !isdirectory(s:dein_repo_dir)
+		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+	endif
+	execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
 " 必須
-call dein#begin(s:dein_dir)
+if dein#load_state(s:dein_dir)
+	call dein#begin(s:dein_dir)
 
-" Plugins
-call dein#add('Shougo/vimproc.vim', {'build' : 'make -f make_unix.mak'})
+	call dein#load_toml('~/.config/nvim/dein/dein.toml', {'lazy': 0})
+	call dein#load_toml('~/.config/nvim/dein/dein_lazy.toml', {'lazy': 1})
+	" ローカルプラグインの読み込み
+	" call dein#load_toml('~/.config/nvim/dein/dein_local.toml', {'lazy':0})
+	call dein#local('~/.config/nvim/myplugins',
+				\ {},
+				\ [
+				\ 'hello.vim',
+				\ 'online-judge-tools.vim',
+				\ ])
 
-" colorschemes
-call dein#add('flazz/vim-colorschemes')
-call dein#add('jacoborus/tender.vim')
-call dein#add('altercation/vim-colors-solarized') " solarized
-call dein#add('croaker/mustang-vim')              " mustang
-call dein#add('jeffreyiacono/vim-colors-wombat')  " wombat
-call dein#add('nanotech/jellybeans.vim')          " jellybeans
-call dein#add('vim-scripts/Lucius')               " lucius
-call dein#add('vim-scripts/Zenburn')              " zenburn
-call dein#add('mrkn/mrkn256.vim')                 " mrkn256
-call dein#add('jpo/vim-railscasts-theme')         " railscasts
-call dein#add('therubymug/vim-pyte')              " pyte
-call dein#add('tomasr/molokai')                   " molokai
-call dein#add('chriskempson/vim-tomorrow-theme')  " tomorrow night
-call dein#add('vim-scripts/twilight')             " twilight
-call dein#add('w0ng/vim-hybrid')                  " hybrid
-call dein#add('freeo/vim-kalisi')                 " kalisi
-call dein#add('morhetz/gruvbox')                  " gruvbox
-call dein#add('toupeira/vim-desertink')           " desertink
-call dein#add('sjl/badwolf')                      " badwolf
-call dein#add('itchyny/landscape.vim')            " landscape
-call dein#add('joshdick/onedark.vim')             " onedark in atom
-call dein#add('gosukiwi/vim-atom-dark')           " atom-dark
+	call dein#end()
+	call dein#save_state()
+endif
 
-call dein#load_toml('~/.config/nvim/dein/dein.toml', {'lazy': 0})
-call dein#load_toml('~/.config/nvim/dein/dein_lazy.toml', {'lazy': 1})
-
-" 必須
-call dein#end()
-filetype plugin indent on
-syntax enable
+"filetype plugin indent on
+"syntax enable
 
 " プラグインのインストール
 if dein#check_install()
-    call dein#install()
+	call dein#install()
 endif
 
 "}}}1
 " カラースキーム {{{1
 "colorscheme設定
 if (has("termguicolors"))
-    set termguicolors
+	set termguicolors
 endif
 let g:cpp_class_scope_highlight = 1
 colorscheme onedark
@@ -205,8 +209,6 @@ nnoremap < <<
 nnoremap > >>
 noremap ; :
 noremap : ;
-inoremap <C-b> //============================================================================================<CR><C-u>
-nnoremap <Space>b i//============================================================================================<CR><C-u><C-[>
 set backspace=start,eol,indent
 set wildmenu
 inoremap jk <Esc>
@@ -236,6 +238,7 @@ endfunction
 "import template file
 autocmd BufNewFile *.sh 0r ~/.config/nvim/template/sh.txt
 autocmd BufNewFile *.cpp 0r ~/.config/nvim/template/cpp.txt
+autocmd BufNewFile CMakeLists.txt 0r ~/.config/nvim/template/cmake.txt
 "}}}1
 " プラグインの設定類 そのうち移行したい {{{1
 "使用中 {{{2
@@ -262,27 +265,27 @@ vnoremap Tj y :Trans :en '<C-r>"'<CR>
 "vimのtab機能をいい感じにする {{{3
 " Anywhere SID.
 function! s:SID_PREFIX()
-    return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+	return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
 
 " Set tabline.
 function! s:my_tabline()
-    let s = ''
-    for i in range(1, tabpagenr('$'))
-        let bufnrs = tabpagebuflist(i)
-        let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-        let no = i  " display 0-origin tabpagenr.
-        let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-        let title = fnamemodify(bufname(bufnr), ':t')
-        let title = '[' . title . ']'
-        let s .= '%'.i.'T'
-        let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-        let s .= no . ':' . title
-        let s .= mod
-        let s .= '%#TabLineFill# '
-    endfor
-    let s .= '%#TabLineFill#%T%=%#TabLine#'
-    return s
+	let s = ''
+	for i in range(1, tabpagenr('$'))
+		let bufnrs = tabpagebuflist(i)
+		let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+		let no = i  " display 0-origin tabpagenr.
+		let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+		let title = fnamemodify(bufname(bufnr), ':t')
+		let title = '[' . title . ']'
+		let s .= '%'.i.'T'
+		let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+		let s .= no . ':' . title
+		let s .= mod
+		let s .= '%#TabLineFill# '
+	endfor
+	let s .= '%#TabLineFill#%T%=%#TabLine#'
+	return s
 endfunction
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 "常にタブラインを表示
@@ -290,7 +293,7 @@ set showtabline=2 "常にタブラインを表示
 " Tab jump
 " t1で1番左のタブ、t2で1番左から2番目のタブにジャンプ
 for n in range(1, 9)
-    execute 'nnoremap<silent> [Tag]'.n	':<C-u>tabnext'.n.'<CR>'
+	execute 'nnoremap<silent> [Tag]'.n	':<C-u>tabnext'.n.'<CR>'
 endfor
 " tc 新しいタブを一番右に作る
 nnoremap <silent> [Tag]c :tablast <bar> tabnew<CR>

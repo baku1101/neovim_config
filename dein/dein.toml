@@ -2,6 +2,63 @@
 #repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+#color schemes
+[[plugins]]
+repo = 'flazz/vim-colorschemes'
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+[[plugins]]
+repo = 'croaker/mustang-vim'
+[[plugins]]
+repo = 'jeffreyiacono/vim-colors-wombat'
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+[[plugins]]
+repo = 'vim-scripts/Lucius'
+[[plugins]]
+repo = 'vim-scripts/Zenburn'
+[[plugins]]
+repo = 'mrkn/mrkn256.vim'
+[[plugins]]
+repo = 'jpo/vim-railscasts-theme'
+[[plugins]]
+repo = 'therubymug/vim-pyte'
+[[plugins]]
+repo = 'tomasr/molokai'
+[[plugins]]
+repo = 'chriskempson/vim-tomorrow-theme'
+[[plugins]]
+repo = 'vim-scripts/twilight'
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+[[plugins]]
+repo = 'freeo/vim-kalisi'
+[[plugins]]
+repo = 'morhetz/gruvbox'
+[[plugins]]
+repo = 'toupeira/vim-desertink'
+[[plugins]]
+repo = 'sjl/badwolf'
+[[plugins]]
+repo = 'itchyny/landscape.vim'
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+[[plugins]]
+repo = 'gosukiwi/vim-atom-dark'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merge = 0
+rev = 'release'
+hook_add = '''
+source ~/.config/nvim/plugins/coc.nvim
+'''
+
+[[plugins]]
 repo = 'honza/vim-snippets'
 
 [[plugins]]
@@ -37,28 +94,11 @@ let g:cpp_named_requirements_highlight = 1
 [[plugins]]
 repo = 'simeji/winresizer'
 
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-merge = 0
-rev = 'release'
-hook_add = '''
-source ~/.config/nvim/plugins/coc.nvim
-'''
+
 #
 #[[plugins]]
 #repo = "LumaKernel/coquille"
 #
-
-# debugger
-[[plugins]]
-repo = 'dbgx/lldb.nvim'
-hook_add = '''
-source ~/.config/nvim/plugins/lldb.nvim
-'''
-
-[[plugins]]
-repo = 'puremourning/vimspector'
-build = './install_gadget.py --all --force-enable-go'
 
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
@@ -90,8 +130,6 @@ repo = 'Yggdroot/indentLine'
 [[plugins]]
 repo = 'roxma/nvim-yarp'
 
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -104,3 +142,12 @@ nnoremap <Space>n :RangerOpenCurrentDir<CR>
 
 [[plugins]]
 repo = 'rbgrouleff/bclose.vim'
+
+[[plugins]]
+repo = 'CoatiSoftware/vim-sourcetrail'
+
+[[plugins]]
+repo = 'markonm/traces.vim'
+
+[[plugins]]
+repo = 'LeafCage/vimhelpgenerator'
