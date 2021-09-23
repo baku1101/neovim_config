@@ -143,13 +143,13 @@ if dein#load_state(s:dein_dir)
 	call dein#load_toml('~/.config/nvim/dein/dein_lazy.toml', {'lazy': 1})
 	" ローカルプラグインの読み込み
 	" call dein#load_toml('~/.config/nvim/dein/dein_local.toml', {'lazy':0})
-	call dein#local('~/.config/nvim/myplugins',
-				\ {},
-				\ [
-				\ 'hello.vim',
-				\ 'online-judge-tools.vim',
-				\ ])
-
+"	call dein#local('~/.config/nvim/myplugins',
+"				\ {},
+"				\ [
+"				\ 'hello.vim',
+"				\ 'online-judge-tools.vim',
+"				\ ])
+"
 	call dein#end()
 	call dein#save_state()
 endif
