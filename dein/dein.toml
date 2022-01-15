@@ -151,3 +151,6 @@ repo = 'markonm/traces.vim'
 
 [[plugins]]
 repo = 'LeafCage/vimhelpgenerator'
+
+[[plugins]]
+repo = 'beeender/Comrade'

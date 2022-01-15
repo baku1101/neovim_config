@@ -139,8 +139,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 function s:MakeCclsCpp()
 	let temp = expand('%')
 	let dir = getcwd()
-	echo system('echo ''[\n{\n"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang++-10", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++17", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG"]\n}\n]'' > compile_commands.json')
-	echo system('echo ''%compile_commands.json\n%h %hpp\n-I.'' > .ccls')
+	echo system('echo ''[{"directory": "' . dir . '","file": "' . temp . '", "arguments": ["/usr/bin/clang++-10", "-xc++", "' . temp . '", "--driver-mode=g++", "-std=c++17", "-Wall", "-Wno-unused-const-variable", "-g", "-fsanitize=undefined", "-D", "_GLIBCXX_DEBUG"]}]'' > compile_commands.json')
+	echo system('echo ''%compile_commands.json%h %hpp-I.'' > .ccls')
 endfunction
 
 function s:MakeCclsC()

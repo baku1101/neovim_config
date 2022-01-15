@@ -154,9 +154,6 @@ noremap <S-l>   $
 noremap m  %
 nnoremap <CR> o<ESC>
 nnoremap == gg=G''
-"nnoremap <Space>tv  :vs<CR>:Deol<CR>
-"nnoremap <Space>ts  :sp<CR>:Deol<CR>
-"nnoremap <Space>tf  :Deol -split=floating -winwidth=110<CR>
 nnoremap < <<
 nnoremap > >>
 noremap ; :
